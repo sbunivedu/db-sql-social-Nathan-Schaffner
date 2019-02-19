@@ -1,0 +1,28 @@
+Problem #1
+
+SELECT  H2.name
+FROM    Friend F, Highschooler H1, Highschooler H2
+WHERE   H1.name = 'Gabriel' AND H1.ID = F.ID1 AND H2.ID = F.ID2;
+//////////////////////////////////////////////////////////////////////////////////////////
+Problem #2
+
+SELECT  name, grade
+FROM    Highschooler
+WHERE   ID NOT IN
+        (SELECT ID1
+         FROM   Likes)
+        AND ID NOT IN
+        (SELECT ID2
+         FROM Likes);
+//////////////////////////////////////////////////////////////////////////////////////////
+Problem #3
+
+SELECT  H1.name, H1.grade 
+FROM    Highschooler H1, Likes L1, Likes L2
+WHERE   (H1.ID = L1.ID2 OR H1.ID = L2.ID2) AND L1.ID1 > L2.ID1 AND L1.ID2 = L2.ID2;
+//////////////////////////////////////////////////////////////////////////////////////////
+Problem #4
+
+SELECT  H1.name, H1.grade, H2.name, H2.grade
+FROM    Highschooler H1, Highschooler H2, Likes L
+WHERE   H1.ID = L.ID1 AND H2.ID = L.ID2 AND (H1.grade - H2.grade) >= 2;
